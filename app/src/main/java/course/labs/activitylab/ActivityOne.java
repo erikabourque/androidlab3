@@ -1,11 +1,13 @@
 package course.labs.activitylab;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 
 public class ActivityOne extends Activity {
@@ -26,7 +28,17 @@ public class ActivityOne extends Activity {
         //Log cat print out
         Log.i(TAG, "onCreate called");
 
-        // grabbing the integers from bundle, if exists
+        // Grabbing the integers from SharedPreferences if exists
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        onCreateCount = prefs.getInt("onCreateCount", 0);
+        onStartCount = prefs.getInt("onStartCount", 0);
+        onResumeCount = prefs.getInt("onResumeCount", 0);
+        onPauseCount = prefs.getInt("onPauseCount", 0);
+        onStopCount = prefs.getInt("onStopCount", 0);
+        onDestroyCount = prefs.getInt("onDestroyCount", 0);
+        onRestartCount = prefs.getInt("onRestartCount", 0);
+
+        // Grabbing the integers from bundle, if exists
         if (savedInstanceState != null)
         {
             onCreateCount = savedInstanceState.getInt("onCreateCount");
@@ -146,6 +158,18 @@ public class ActivityOne extends Activity {
         TextView txtView = (TextView) findViewById(R.id.stop);
         String str = getResources().getString(R.string.onStop) + onStopCount;
         txtView.setText(str);
+
+        SharedPreferences prefs = getPreferences(MODE_PRIVATE);
+        SharedPreferences.Editor edit = prefs.edit();
+        edit.putInt("onStartCount", onStartCount);
+        edit.putInt("onCreateCount", onCreateCount);
+        edit.putInt("onDestroyCount", onCreateCount);
+        edit.putInt("onRestartCount", onCreateCount);
+        edit.putInt("onPauseCount", onCreateCount);
+        edit.putInt("onStopCount", onCreateCount);
+        edit.putInt("onResumeCount", onCreateCount);
+
+        edit.commit();
     }
 
     @Override
@@ -176,11 +200,49 @@ public class ActivityOne extends Activity {
     }
 
     public void launchActivityTwo(View view) {
-        //TODO:
         // This function launches Activity Two.
         // Hint: use Context’s startActivity() method.
         Intent intent = new Intent(this, ActivityTwo.class);
         startActivity(intent);
+    }
+
+    public void clear(View view) {
+        // Sets all the counters to 0 and updates the views
+        onCreateCount = 0;
+        onStartCount = 0;
+        onResumeCount = 0;
+        onPauseCount = 0;
+        onStopCount = 0;
+        onDestroyCount = 0;
+        onRestartCount = 0;
+
+        TextView txtView = (TextView) findViewById(R.id.create);
+        String str = getResources().getString(R.string.onCreate) + onCreateCount;
+        txtView.setText(str);
+
+        txtView = (TextView) findViewById(R.id.start);
+        str = getResources().getString(R.string.onStart) + onStartCount;
+        txtView.setText(str);
+
+        txtView = (TextView) findViewById(R.id.destroy);
+        str = getResources().getString(R.string.onDestroy) + onDestroyCount;
+        txtView.setText(str);
+
+        txtView = (TextView) findViewById(R.id.restart);
+        str = getResources().getString(R.string.onRestart) + onRestartCount;
+        txtView.setText(str);
+
+        txtView = (TextView) findViewById(R.id.pause);
+        str = getResources().getString(R.string.onPause) + onPauseCount;
+        txtView.setText(str);
+
+        txtView = (TextView) findViewById(R.id.stop);
+        str = getResources().getString(R.string.onStop) + onStopCount;
+        txtView.setText(str);
+
+        txtView = (TextView) findViewById(R.id.resume);
+        str = getResources().getString(R.string.onResume) + onResumeCount;
+        txtView.setText(str);
     }
 
 

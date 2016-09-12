@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Activity Lab</string>
-    <string name="button">Start Activity Two</string>
+    <string name="button1">Start Activity Two</string>
+    <string name="button2">Clear Values</string>
     <string name="close">Close Activity</string>
     <string name="m_1">Sample Menu Item</string>
     <string name="m_2">Sample Menu Item 2</string>

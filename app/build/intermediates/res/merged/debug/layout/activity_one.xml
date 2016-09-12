@@ -44,6 +44,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:onClick="launchActivityTwo"
-        android:text="@string/button" />
+        android:text="@string/button1" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="clear"
+        android:text="@string/button2" />
 
 </LinearLayout>

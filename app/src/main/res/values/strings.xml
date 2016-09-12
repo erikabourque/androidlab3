@@ -10,7 +10,8 @@
     <string name="onStop">onStop() calls:</string>
     <string name="onDestroy">onDestroy() calls:</string>
     <string name="onRestart">onRestart() calls:</string>
-    <string name="button">Start Activity Two</string>
+    <string name="button1">Start Activity Two</string>
+    <string name="button2">Clear Values</string>
     <string name="title_activity_activity_two">Activity Two</string>
     <string name="welcome">Welcome to Activity Two</string>
     <string name="close">Close Activity</string>
